@@ -1,11 +1,22 @@
 {
   "name": "xlsx2csv",
   "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node samples.js"
-  },
+  "description": "xlsx2csv",
+  "main": "./xlsx2csv.js",
+  "keywords": [
+    "xlsx2csv"
+  ],
   "dependencies": {
     "node-xlsx": "*"
-  }
+  },
+  "repository": {
+    "url": "git://github.com/zhs007/xlsx2csv.git"
+  },
+  "author": "zhs007",
+  "license": "MIT",
+  "homepage": "https://github.com/zhs007/xlsx2csv",
+  "bugs": {
+    "url": "https://github.com/zhs007/xlsx2csv/issues"
+  },
+  "readmeFilename": "README.md"
 }

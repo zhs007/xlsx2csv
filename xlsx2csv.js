@@ -15,15 +15,17 @@ function xlsx2csv(xlsxfile, csvfile) {
 
         for (var y = 0; y < csvobj.length; ++y) {
             for (var x = 0; x < csvobj[y].length; ++x) {
-                var str = csvobj[y][x].toString();
+                if (csvobj[y][x] != undefined) {
+                    var str = csvobj[y][x].toString();
 
-                if (str.indexOf(',') >= 0) {
-                    fs.writeSync(csvf, '"');
-                    fs.writeSync(csvf, csvobj[y][x]);
-                    fs.writeSync(csvf, '"');
-                }
-                else {
-                    fs.writeSync(csvf, csvobj[y][x]);
+                    if (str.indexOf(',') >= 0) {
+                        fs.writeSync(csvf, '"');
+                        fs.writeSync(csvf, csvobj[y][x]);
+                        fs.writeSync(csvf, '"');
+                    }
+                    else {
+                        fs.writeSync(csvf, csvobj[y][x]);
+                    }
                 }
 
                 if (x < csvobj[y].length - 1) {

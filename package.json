@@ -1,6 +1,6 @@
 {
   "name": "xlsx2csv",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "xlsx2csv",
   "main": "./xlsx2csv.js",
   "keywords": [

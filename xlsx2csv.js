@@ -5,7 +5,7 @@
 var xlsx = require('node-xlsx');
 var fs = require('fs');
 
-function xlsx2csv(xlsxfile, csvfile) {
+function xlsx2csv(xlsxfile, csvfile, excludeline) {
     var obj = xlsx.parse(xlsxfile);
 
     if (obj.length > 0) {
@@ -14,6 +14,10 @@ function xlsx2csv(xlsxfile, csvfile) {
         var csvobj = obj[0].data;
 
         for (var y = 0; y < csvobj.length; ++y) {
+            if (excludeline == y) {
+                continue ;
+            }
+
             for (var x = 0; x < csvobj[y].length; ++x) {
                 if (csvobj[y][x] != undefined) {
                     var str = csvobj[y][x].toString();

@@ -26,26 +26,33 @@ var argv = require('yargs')
 
 var basearr = argv._;
 
-if (basearr == undefined || basearr.length != 1) {
+if (basearr == undefined || basearr.length < 1) {
     console.log('Usage: xlsx2csv path');
 
     process.exit(1);
 }
 
-var lstfile = glob.sync(basearr[0]);
-for (var i = 0; i < lstfile.length; ++i) {
-    var srcfile = lstfile[i];
-    if (fs.existsSync(srcfile)) {
-        if (srcfile.slice(srcfile.length - 4) == '.xls' || srcfile.slice(srcfile.length - 5) == '.xlsx') {
-            var filename = srcfile;
-            var ptindex = srcfile.lastIndexOf('.');
-            if (ptindex > 0) {
-                filename = srcfile.slice(0, ptindex);
+var excludeline = -1;
+if (argv.hasOwnProperty('exclude')) {
+    excludeline = argv.exclude;
+}
+
+for (var j = 0; j < basearr.length; ++j) {
+    var lstfile = glob.sync(basearr[j]);
+    for (var i = 0; i < lstfile.length; ++i) {
+        var srcfile = lstfile[i];
+        if (fs.existsSync(srcfile)) {
+            if (srcfile.slice(srcfile.length - 4) == '.xls' || srcfile.slice(srcfile.length - 5) == '.xlsx') {
+                var filename = srcfile;
+                var ptindex = srcfile.lastIndexOf('.');
+                if (ptindex > 0) {
+                    filename = srcfile.slice(0, ptindex);
+                }
+
+                xlsx2csv.xlsx2csv(srcfile, filename + '.csv', excludeline);
+
+                console.log(srcfile + ' OK!');
             }
-
-            xlsx2csv.xlsx2csv(srcfile, filename + '.csv');
-
-            console.log(srcfile + ' OK!');
         }
     }
 }

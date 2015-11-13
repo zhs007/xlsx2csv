@@ -1,7 +1,7 @@
 {
   "name": "xlsx2csv",
-  "version": "0.1.0",
-  "latest": "0.1.0",
+  "version": "0.1.1",
+  "latest": "0.1.1",
   "description": "xlsx2csv",
   "keywords": [
     "xlsx2csv"

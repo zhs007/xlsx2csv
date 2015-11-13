@@ -1,20 +1,38 @@
 {
   "name": "xlsx2csv",
-  "version": "0.0.2",
+  "version": "0.1.0",
+  "latest": "0.1.0",
   "description": "xlsx2csv",
-  "main": "./xlsx2csv.js",
   "keywords": [
     "xlsx2csv"
   ],
+  "preferGlobal": true,
   "dependencies": {
+    "shelljs": "*",
+    "yargs": "*",
+    "glob": "*",
     "node-xlsx": "*"
   },
   "repository": {
     "url": "git://github.com/zhs007/xlsx2csv.git"
   },
-  "author": "zhs007",
+  "author": {
+    "name": "zhs007",
+    "email": "sssxueren@gmail.com",
+    "url": "http://www.heysdk.com"
+  },
   "license": "MIT",
   "homepage": "https://github.com/zhs007/xlsx2csv",
+  "directories": {
+    "bin": "./bin"
+  },
+  "main": "./bin/xlsx2csv.js",
+  "bin": {
+    "xlsx2csv": "./bin/xlsx2csv.js"
+  },
+  "scripts": {
+    "start": "node ./bin/xlsx2csv.js"
+  },
   "bugs": {
     "url": "https://github.com/zhs007/xlsx2csv/issues"
   },

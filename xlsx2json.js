@@ -7,11 +7,11 @@ var rIntGrammar = new RegExp('[1-9]+[0-9]*');
 var rFloatGrammar = new RegExp('[0-9]+[.0-9]*');
 
 function isInt(str) {
-    return rIntGrammar.exec(str);
+    return rIntGrammar.exec(str) == str;
 }
 
 function isFloat(str) {
-    return rFloatGrammar.exec(str);
+    return rFloatGrammar.exec(str) == str;
 }
 
 function xlsx2json(xlsxfile, jsonfile, excludeline) {

@@ -5,7 +5,7 @@
 var fs = require('fs');
 var process = require('process');
 var glob = require('glob');
-var xlsx2csv = require('../xlsx2csv');
+var xlsx2json = require('../xlsx2json');
 var argv = require('yargs')
     .option('t', {
         alias : 'tablename',
@@ -19,8 +19,8 @@ var argv = require('yargs')
         describe: 'exclude same line',
         type: 'int'
     })
-    .usage('Usage: xlsx2csv path')
-    .example('xlsx2csv path', 'xlsx2csv path')
+    .usage('Usage: xlsx2json path')
+    .example('xlsx2json path', 'xlsx2json path')
     .help('h')
     .alias('h', 'help')
     .epilog('copyright 2015')
@@ -29,7 +29,7 @@ var argv = require('yargs')
 var basearr = argv._;
 
 if (basearr == undefined || basearr.length < 1) {
-    console.log('Usage: xlsx2csv path');
+    console.log('Usage: xlsx2json path');
 
     process.exit(1);
 }
@@ -51,7 +51,7 @@ for (var j = 0; j < basearr.length; ++j) {
                     filename = srcfile.slice(0, ptindex);
                 }
 
-                xlsx2csv.xlsx2csv(srcfile, filename + '.csv', excludeline);
+                xlsx2json.xlsx2json(srcfile, filename + '.json', excludeline);
 
                 console.log(srcfile + ' OK!');
             }

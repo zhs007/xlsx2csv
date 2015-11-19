@@ -1,6 +1,4 @@
-/**
- * Created by zhs007 on 15/5/15.
- */
+"use strict";
 
 var xlsx = require('node-xlsx');
 var fs = require('fs');

@@ -9,19 +9,24 @@ function xlsx2json(xlsxfile, jsonfile, excludeline) {
     if (obj.length > 0) {
         let jsonobj = [];
         let csvobj = obj[0].data;
+        let my = 0;
+
+        if (excludeline == my) {
+            my += 1;
+        }
 
         for (let y = 0; y < csvobj.length; ++y) {
-            if (excludeline == y) {
+            if (excludeline == y || my == y) {
                 continue ;
             }
 
             let cobj = {};
             for (let x = 0; x < csvobj[y].length; ++x) {
                 if (csvobj[y][x] != undefined) {
-                    cobj[csvobj[0][x]] = csvobj[y][x].toString();
+                    cobj[csvobj[my][x]] = csvobj[y][x].toString();
                 }
                 else {
-                    cobj[csvobj[0][x]] = undefined;
+                    cobj[csvobj[my][x]] = undefined;
                 }
             }
 

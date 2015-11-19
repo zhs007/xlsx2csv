@@ -3,6 +3,17 @@
 var xlsx = require('node-xlsx');
 var fs = require('fs');
 
+var rIntGrammar = new RegExp('[1-9]+[0-9]*');
+var rFloatGrammar = new RegExp('[0-9]+[.0-9]*');
+
+function isInt(str) {
+    return rIntGrammar.exec(str);
+}
+
+function isFloat(str) {
+    return rFloatGrammar.exec(str);
+}
+
 function xlsx2json(xlsxfile, jsonfile, excludeline) {
     let obj = xlsx.parse(xlsxfile);
 
@@ -23,7 +34,16 @@ function xlsx2json(xlsxfile, jsonfile, excludeline) {
             let cobj = {};
             for (let x = 0; x < csvobj[y].length; ++x) {
                 if (csvobj[y][x] != undefined) {
-                    cobj[csvobj[my][x]] = csvobj[y][x].toString();
+                    let cstr = csvobj[y][x].toString();
+                    if (isInt(cstr)) {
+                        cobj[csvobj[my][x]] = parseInt(cstr);
+                    }
+                    else if (isFloat(cstr)) {
+                        cobj[csvobj[my][x]] = parseFloat(cstr);
+                    }
+                    else {
+                        cobj[csvobj[my][x]] = cstr;
+                    }
                 }
                 else {
                     cobj[csvobj[my][x]] = undefined;

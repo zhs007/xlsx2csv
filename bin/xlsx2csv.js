@@ -58,3 +58,5 @@ for (var j = 0; j < basearr.length; ++j) {
         }
     }
 }
+
+process.exit();

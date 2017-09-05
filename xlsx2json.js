@@ -57,4 +57,44 @@ function xlsx2json(xlsxfile, jsonfile, excludeline) {
     }
 }
 
+function xlsx2jsonobj(xlsxfile, jsonfile, key) {
+    let obj = xlsx.parse(xlsxfile);
+
+    if (obj.length > 0) {
+        let jsonobj = {};
+        let csvobj = obj[0].data;
+        let my = 0;
+
+        for (let y = 0; y < csvobj.length; ++y) {
+            if (my == y) {
+                continue ;
+            }
+
+            let cobj = {};
+            for (let x = 0; x < csvobj[y].length; ++x) {
+                if (csvobj[y][x] != undefined) {
+                    let cstr = csvobj[y][x].toString();
+                    if (isInt(cstr)) {
+                        cobj[csvobj[my][x]] = parseInt(cstr);
+                    }
+                    else if (isFloat(cstr)) {
+                        cobj[csvobj[my][x]] = parseFloat(cstr);
+                    }
+                    else {
+                        cobj[csvobj[my][x]] = cstr;
+                    }
+                }
+                else {
+                    cobj[csvobj[my][x]] = undefined;
+                }
+            }
+
+            jsonobj[cobj[key]] = cobj;
+        }
+
+        fs.writeFileSync(jsonfile, JSON.stringify(jsonobj), 'utf-8');
+    }
+}
+
 exports.xlsx2json = xlsx2json;
+exports.xlsx2jsonobj = xlsx2jsonobj;

@@ -19,6 +19,12 @@ var argv = require('yargs')
         describe: 'exclude same line',
         type: 'int'
     })
+    .option('k', {
+        alias : 'key',
+        demand: false,
+        describe: 'build obj with key',
+        type: 'string'
+    })
     .usage('Usage: xlsx2json path')
     .example('xlsx2json path', 'xlsx2json path')
     .help('h')
@@ -39,6 +45,11 @@ if (argv.hasOwnProperty('exclude')) {
     excludeline = argv.exclude;
 }
 
+var mkey = undefined;
+if (argv.hasOwnProperty('key')) {
+    mkey = argv.key;
+}
+
 for (var j = 0; j < basearr.length; ++j) {
     var lstfile = glob.sync(basearr[j]);
     for (var i = 0; i < lstfile.length; ++i) {
@@ -51,10 +62,17 @@ for (var j = 0; j < basearr.length; ++j) {
                     filename = srcfile.slice(0, ptindex);
                 }
 
-                xlsx2json.xlsx2json(srcfile, filename + '.json', excludeline);
+                if (mkey == undefined) {
+                    xlsx2json.xlsx2json(srcfile, filename + '.json', excludeline);
+                }
+                else {
+                    xlsx2json.xlsx2jsonobj(srcfile, filename + '.json', mkey);
+                }
 
                 console.log(srcfile + ' OK!');
             }
         }
     }
 }
+
+process.exit();

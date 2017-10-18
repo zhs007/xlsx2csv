@@ -1,11 +1,12 @@
 {
   "name": "xlsx2csv",
-  "version": "1.0.6",
-  "latest": "1.0.6",
+  "version": "1.0.7",
+  "latest": "1.0.7",
   "description": "xlsx2csv",
   "keywords": [
     "xlsx2csv",
-    "xlsx2json"
+    "xlsx2json",
+    "xlsx2php",    
   ],
   "preferGlobal": true,
   "dependencies": {
@@ -30,7 +31,8 @@
   "main": "./bin/xlsx2csv.js",
   "bin": {
     "xlsx2csv": "./bin/xlsx2csv.js",
-    "xlsx2json": "./bin/xlsx2json.js"
+    "xlsx2json": "./bin/xlsx2json.js",
+    "xlsx2php": "./bin/xlsx2php.js"
   },
   "scripts": {
     "start": "node ./bin/xlsx2csv.js"

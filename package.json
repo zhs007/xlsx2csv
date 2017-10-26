@@ -6,7 +6,7 @@
   "keywords": [
     "xlsx2csv",
     "xlsx2json",
-    "xlsx2php",    
+    "xlsx2php"
   ],
   "preferGlobal": true,
   "dependencies": {

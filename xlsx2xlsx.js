@@ -66,6 +66,14 @@ function xlsx2xlsx(t1file, p1file, t2file, excludeline) {
             }
         }
 
+        var max = reels2[0].length;
+        for(var i = 1; i < reels2.length; ++i)
+        {
+            while(reels2[i].length < max)
+            {
+                reels2[i][reels2[i].length] = -1;
+            }
+        }
 
         for (var i = 0; i < reels2.length; ++i) {
             for (var j = 0; j < reels2[i].length; ++j) {

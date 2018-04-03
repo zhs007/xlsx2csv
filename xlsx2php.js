@@ -30,6 +30,14 @@ function arr2phpstr(arr, phpval) {
             else if (typeof arr[ii][key] == 'number') {
                 curs += "'" + key + "' => " + arr[ii][key];
             }
+            else if (typeof arr[ii][key] == 'string') {
+                if (arr[ii][key].indexOf("'") >= 0) {
+                    curs += "'" + key + "' => " + '"' + arr[ii][key] + '"';
+                }
+                else {
+                    curs += "'" + key + "' => '" + arr[ii][key] + "'";
+                }
+            }
             else {
                 curs += "'" + key + "' => '" + arr[ii][key] + "'";
             }

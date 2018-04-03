@@ -72,6 +72,14 @@ function obj2phpstr(arr, phpval) {
             else if (typeof arr[mkey][key] == 'number') {
                 curs += "'" + key + "' => " + arr[mkey][key];
             }
+            else if (typeof arr[ii][key] == 'string') {
+                if (arr[mkey][key].indexOf("'") >= 0) {
+                    curs += "'" + key + "' => " + '"' + arr[mkey][key] + '"';
+                }
+                else {
+                    curs += "'" + key + "' => '" + arr[mkey][key] + "'";
+                }
+            }
             else {
                 curs += "'" + key + "' => '" + arr[mkey][key] + "'";
             }
